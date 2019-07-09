@@ -1,0 +1,35 @@
+Author: Mikko Kivekäs
+Version: 0.2.0
+Date: 06/2019
+License: GPLv3
+
+This program is created for PAC-SLI measurement setup in ISOLDE, CERN. This program is created for research use and should not be used in commercial applications.
+
+This program is designed to be operated with Arduino Mega2560 I/O-board.  Communication between Arduino and this LabVIEW program uses serial communication over USB. MakerHub LINX library is used. https://www.labviewmakerhub.com/doku.php?id=libraries:linx:start
+
+
+In monitoring tab user can monitor input and output values. Monitoring tab has also the control of detector data acquisition control. 
+
+Settings tab contains all essential settings for running the measurement automation. There user can control I/O-ports, SPI settings and automation operation order and timing. SPI is used to read temperature values from MAX31855KASA+ thermocouple amplifier-adc. SPI MISO and CLK ports are fixed due Arduino design and stated under SPI-settings.
+
+     I/O type.....................I/O-port
+     -MISO/DO/Data.......50
+     -CLK/Clock...............52
+
+Furnace power setting I/O-port must be digital I/O-port with PMW. Choose of digital ports 2-13 (Arduino Mega). 
+
+Indicator next to device name is ON when link between PC and Arduino is established and ready to run. Spress Start-button to run.
+
+CAUTION! FURNACE MUST BE IN UP POSITION, OTHERWISE FURNACE WILL BREAK DURING RUN.
+
+If program does not run normally or you press "Abort Execution" of LabVIEW, build firmware to Arduino again. It is good practice to build firmware before
+every run start. One can build firmware in LabVIEW going 
+
+    Tools >> MakerHUB >> LINX >> LINX Firmware Wizard...  
+
+and there choosing right I/O-board and communication channel. In case of firmware not installing properly, disconnect all wires from Arduino, go to Arduino 
+IDE and build in empty Sketch. If that does uploads properly, you can proceed to build LINX firmware.
+
+You can find VIs and other information from https://github.com/MikkoKivekas/PAC-SLI
+
+HOW TO RUN MEASUREMENT:
