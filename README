@@ -32,4 +32,43 @@ IDE and build in empty Sketch. If that does uploads properly, you can proceed to
 
 You can find VIs and other information from https://github.com/MikkoKivekas/PAC-SLI
 
+
+This program uses custom LINX firmware. Customization is adding code below to end of setup block of Arduino Sketch.
+
+     //Setting PWM pins 9 and 10 PWM frequency to 30.64 Hz for Multicomp SSR
+     TCCR2B = TCCR2B & 0b11111000 | 0x07; // for PWM frequency of 30.64 Hz 0x07 is the right setting.
+  
+     //This frequency setting is for using Multicomp SSR, that cannot input too high frequency without cutting the usable scale.
+     //With, lowest possible, ~30 Hz frequency (setting 0x07 for timer 2) almost full scale is usable, percentages balow 10% are not usable
+     //Setting 0x06 cuts out about 50% marker.
+     /*
+     * Settings:
+     * https://etechnophiles.com/change-frequency-pwm-pins-arduino-uno/
+     * https://forum.arduino.cc/index.php?topic=72092.0
+     * 
+     * Arduino Mega has different pins on timers than Uno in link. Mega timers
+     timer 0 (controls pin 13, 4);
+     timer 1 (controls pin 12, 11);
+     timer 2 (controls pin 10, 9);
+     timer 3 (controls pin 5, 3, 2);
+     timer 4 (controls pin 8, 7, 6);
+     */
+     
+Custom firmware must be uploaded through Arduino IDE. In Firmware Wizard choode right Arduino Board (Mega 2560) and right COM-port.
+After that choose "Build with Arduino IDE", choose right path for Arduino IDE file. Arduino file that need to be modified can usually be found
+from path 
+     C:\Program Files (x86)\National Instruments\LabVIEW 2017\vi.lib\MakerHub\LINX\Firmware\Source\libraries\LINX\examples\Arduino_Mega2560_Serial
+
+This customization lowers PWM frequency of pins 9 and 10 to 30.64 Hz. This frequency is used, because in original setup we use SSR that cannot input correctly higher frequencies.
+Setup uses Multicomp 20A60VDC SSR with 3-5V input. 
+
+
+
+
+
+
+
+
+
+
 HOW TO RUN MEASUREMENT:
