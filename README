@@ -58,6 +58,7 @@ Custom firmware must be uploaded through Arduino IDE. In Firmware Wizard choode 
 After that choose "Build with Arduino IDE", choose right path for Arduino IDE file. Arduino file that need to be modified can usually be found
 from path 
      C:\Program Files (x86)\National Instruments\LabVIEW 2017\vi.lib\MakerHub\LINX\Firmware\Source\libraries\LINX\examples\Arduino_Mega2560_Serial
+Prepared custom firmware can also be found in this directory.
 
 This customization lowers PWM frequency of pins 9 and 10 to 30.64 Hz. This frequency is used, because in original setup we use SSR that cannot input correctly higher frequencies.
 Setup uses Multicomp 20A60VDC SSR with 3-5V input. 
